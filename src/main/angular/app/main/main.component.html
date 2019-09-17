@@ -1,0 +1,31 @@
+<div style="margin-top: 0.25rem" *ngIf="isLoading">
+    <span class="spinner">
+        Загрузка...
+    </span>
+</div>
+
+
+<div class="col-lg" [hidden]="isLoading">
+
+    <clr-datagrid [(clrDgSelected)]="selectedRows" [clDgRowSelection]="false">
+
+        <clr-dg-column [clrDgField]="'id'">ID</clr-dg-column>
+        <clr-dg-column [clrDgField]="'name'">Имя</clr-dg-column>
+
+        <clr-dg-row *clrDgItems="let record of filteredRecords"
+                    [clrDgItem]="record">
+
+            <clr-dg-cell>{{record.id}}</clr-dg-cell>
+            <clr-dg-cell>{{record.name}}</clr-dg-cell>
+
+        </clr-dg-row>
+
+        <clr-dg-footer>
+            <clr-dg-pagination #pagination [clrDgPageSize]="filteredRecords.length">
+                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+               из  {{pagination.totalItems}} клиентов
+            </clr-dg-pagination>
+        </clr-dg-footer>
+
+    </clr-datagrid>
+</div>

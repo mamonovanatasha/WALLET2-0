@@ -1,0 +1,42 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+
+        logicalFilePath="1.0.x-000000000000"
+
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+            http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="transaction-table" author="natu">
+        <createTable tableName="transaction">
+            <column autoIncrement = "true" name="transaction_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="transaction_id"/>
+            </column>
+
+            <column name = "comment" type="VARCHAR(320)">
+                <constraints nullable="true"/>
+            </column>
+            <column name = "transaction_time" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+            <column name = "transaction_amount" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"
+                             foreignKeyName="fk_user_id"
+                             referencedTableName="users"
+                             referencedColumnNames="user_id"/>
+            </column>
+            <column name="transaction_type_id" type="BIGINT">
+                <constraints nullable="false"
+                             foreignKeyName="fk_transaction_type_id"
+                             referencedTableName="transaction_type"
+                             referencedColumnNames="transaction_type_id"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+</databaseChangeLog>

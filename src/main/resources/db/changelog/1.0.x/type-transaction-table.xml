@@ -1,0 +1,24 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+
+        logicalFilePath="1.0.x-000000000000"
+
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+            http://www.liquibase.org/xml/ns/dbchangelog
+            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="transaction_type" author="natu">
+        <createTable tableName="transaction_type">
+            <column autoIncrement = "true" name="transaction_type_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="transaction_type_id"/>
+            </column>
+
+            <column name = "transaction_type_name" type="VARCHAR(120)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+</databaseChangeLog>

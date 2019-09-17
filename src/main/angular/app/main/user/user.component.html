@@ -1,0 +1,58 @@
+<div style="margin-top: 0.25rem" *ngIf="isLoading">
+    <span class="spinner">
+        Загрузка...
+    </span>
+</div>
+
+
+<div class="col-lg" [hidden]="isLoading">
+
+    <clr-datagrid [(clrDgSelected)]="selectedUsers" [clDgRowSelection]="false">
+        <clr-dg-action-bar>
+            <div class="btn-group">
+                <!--<button *ngIf="selectedUsers.length == 0"-->
+                <!--type="button"-->
+                <!--class="btn btn-sm btn-secondary"-->
+                <!--(click)="onAdd()">-->
+                <!--<clr-icon shape="plus"></clr-icon>-->
+                <!--Add-->
+                <!--</button>-->
+
+                <button *ngIf="selectedUsers.length > 0"
+                        type="button"
+                        class="btn btn-sm btn-secondary"
+                        (click)="onDelete()">
+                    <clr-icon shape="close"></clr-icon>
+                    Delete
+                </button>
+                <!--<button *ngIf="selectedUsers.length == 1"-->
+                <!--type="button"-->
+                <!--class="btn btn-sm btn-secondary"-->
+                <!--(click)="onEdit()">-->
+                <!--<clr-icon shape="pencil"></clr-icon>-->
+                <!--Edit-->
+                <!--</button>-->
+            </div>
+        </clr-dg-action-bar>
+
+        <clr-dg-column [clrDgField]="'id'">ID</clr-dg-column>
+        <clr-dg-column [clrDgField]="'name'">Имя</clr-dg-column>
+
+        <clr-dg-row *clrDgItems="let user of filteredUsers"
+                    [clrDgItem]="user">
+
+            <clr-dg-cell>{{user.id}}</clr-dg-cell>
+            <clr-dg-cell>{{user.name}}</clr-dg-cell>
+
+        </clr-dg-row>
+
+        <clr-dg-footer>
+            <clr-dg-pagination #pagination [clrDgPageSize]="filteredUsers.length">
+                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                из  {{pagination.totalItems}} клиентов
+            </clr-dg-pagination>
+        </clr-dg-footer>
+
+    </clr-datagrid>
+</div>
+
